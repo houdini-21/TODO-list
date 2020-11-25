@@ -16,7 +16,17 @@
 // -Show a count down to the item.
 // -Add “deferred” and “updated” status.
 // -Show notification when time is reached.
-const itemsList = [];
+
+const saveDataLocalStorage = (data) => {
+  localStorage.setItem('list', JSON.stringify(data));
+};
+
+const readDataLocalStorage = () => {
+  const dataStorage = JSON.parse(localStorage.getItem('list'));
+  return dataStorage;
+};
+
+const itemsList = readDataLocalStorage() || [];
 
 const createItem = (name, priority, reminderDate, status) => {
   const itemScafold = {
@@ -26,6 +36,7 @@ const createItem = (name, priority, reminderDate, status) => {
     status,
   };
   itemsList.push(itemScafold);
+  saveDataLocalStorage(itemsList);
 };
 
 const deleteItem = (indexArray) => {
@@ -47,12 +58,14 @@ const editItem = (
   editedPriority,
   editedReminderDate,
   editedStatus,
-  indexArray
+  indexArray,
 ) => {
   itemsList[indexArray].name = editedName;
   itemsList[indexArray].priority = editedPriority;
   itemsList[indexArray].reminderDate = editedReminderDate;
   itemsList[indexArray].status = editedStatus;
+  localStorage.removeItem('list');
+  saveDataLocalStorage(itemsList);
 };
 
 // const itemnew = createItem('dance', 'high', '12-11-29', 'new');
