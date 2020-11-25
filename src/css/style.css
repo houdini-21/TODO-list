@@ -18,18 +18,19 @@ body {
 }
 
 .card {
-  width: 585px;
-  height: 600px;
+  width: 625px;
+  height: 640px;
   background: #fdfdfd;
   border-radius: 10px;
   filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.15));
 }
-.card {
+/*.card {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+*/
 .card__date-searchbar-createitem-container,
 .card__date {
   display: flex;
@@ -37,6 +38,11 @@ body {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.card__date-searchbar-createitem-container {
+  justify-content: space-around;
+  width: 95%;
 }
 
 .date__day {
@@ -59,6 +65,7 @@ body {
 .date__month,
 .date__year {
   margin: 2px;
+  margin-left: 5px;
 }
 
 .month__month-name,
@@ -66,4 +73,60 @@ body {
   font-size: 16px;
   font-weight: 300;
   color: #252525;
+}
+
+.card__searchbar {
+  /*margin: 10px;*/
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 0px solid;
+  height: 43px;
+  overflow: hidden;
+  width: 320px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+}
+input[type="text"].searchbar__input {
+  height: 43px;
+  width: 315px;
+  padding: 10px;
+  line-height: 30px;
+  font-size: 16px;
+  /* padding: 0;*/
+  border: none;
+}
+
+.searchbar__input:focus,
+.createitem__btn:focus {
+  outline: none;
+}
+
+.searchbar__btn {
+  position: absolute;
+  height: 43px;
+  width: 45px;
+  right: 0;
+  top: 0;
+  margin: 0;
+  background: #7ed56f;
+  border: none;
+  background-image: url(../icons/search.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.createitem__btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  background-color: #55c57a;
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+  border: none;
+  background-image: url(../icons/create.svg);
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
