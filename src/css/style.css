@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+* {
+  font-family: "Lato", sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 900px;
+  height: 640px;
+  background: #fdfdfd;
+  border-radius: 10px;
+  filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.15));
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.card__date-searchbar-createitem-container,
+.card__date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card__date-searchbar-createitem-container {
+  justify-content: space-around;
+  width: 95%;
+  margin: 15px;
+}
+
+.date__day {
+  margin: 5px;
+}
+
+.day__day-number {
+  font-size: 43px;
+  font-weight: 600;
+  color: #252525;
+}
+
+.date__month-year-container {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.date__month,
+.date__year {
+  margin: 2px;
+  margin-left: 5px;
+}
+
+.month__month-name,
+.year__year-number {
+  font-size: 16px;
+  font-weight: 300;
+  color: #252525;
+}
+
+.card__searchbar {
+  /*margin: 10px;*/
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 0px solid;
+  height: 43px;
+  overflow: hidden;
+  width: 50%;
+  border-radius: 10px;
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+}
+input[type="text"].searchbar__input {
+  height: 43px;
+  width: 100%;
+  padding: 10px;
+  line-height: 30px;
+  font-size: 16px;
+  /* padding: 0;*/
+  border: none;
+}
+
+.searchbar__input:focus,
+.createitem__btn:focus {
+  outline: none;
+}
+
+.searchbar__btn {
+  position: absolute;
+  height: 43px;
+  width: 45px;
+  right: 0;
+  top: 0;
+  margin: 0;
+  background: #7ed56f;
+  border: none;
+  background-image: url(../icons/search.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.createitem__btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  background-color: #55c57a;
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+  border: none;
+  background-image: url(../icons/create.svg);
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card__todolist-table {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todolist-table {
+  border-collapse: separate;
+  width: 90%;
+  text-align: center;
+  border-spacing: 0px 3px;
+}
+
+table th:nth-child(1),
+table td:nth-child(1) {
+  border-radius: 5px 0px 0px 5px;
+}
+
+table th:nth-last-child(1),
+table td:nth-last-child(1) {
+  border-radius: 0px 5px 5px 0px;
+}
+
+td,
+th {
+  padding: 8px;
+}
+
+thead.todolist-table__tabletitle tr {
+  text-align: center;
+  background-color: #55c57a;
+  color: #fff;
+  height: 40px;
+}
+
+tbody.todolist-table__tableitem tr {
+  text-align: center;
+  background-color: #fff;
+  color: #252525;
+  height: 40px;
+
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+}
+
+.tableitem__options-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.option-icons__icon {
+  width: 22px;
+  height: 22px;
+  margin: 5px 7px;
+}

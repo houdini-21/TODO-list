@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TODO list</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card__date-searchbar-createitem-container">
+          <div class="card__date">
+            <div class="date__day">
+              <span class="day__day-number">
+                26
+              </span>
+            </div>
+            <div class="date__month-year-container">
+              <div class="date__month">
+                <span class="month__month-name">October</span>
+              </div>
+              <div class="date__year">
+                <span class="year__year-number">2020</span>
+              </div>
+            </div>
+          </div>
+          <div class="card__searchbar">
+            <input type="text" class="searchbar__input" />
+            <button class="searchbar__btn"></button>
+          </div>
+          <div class="card__createitem">
+            <button class="createitem__btn"></button>
+          </div>
+        </div>
+        <div class="card__todolist-table">
+          <table class="todolist-table">
+            <thead class="todolist-table__tabletitle">
+              <tr>
+                <th>Name</th>
+                <th>Priority</th>
+                <th>Reminder Date</th>
+                <th>Status</th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            <tbody class="todolist-table__tableitem">
+              <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+                <td>Germany</td>
+                <td>
+                    <div class="tableitem__options-icons">
+                        <img class="option-icons__icon" src="./src/icons/edit.svg" alt="edit" />
+                        <img class="option-icons__icon" src="./src/icons/delete.svg" alt="edit" />
+                        <img class="option-icons__icon" src="./src/icons/circle.svg" alt="edit" />
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="./src/js/app.js"></script>
+  </body>
+</html>
