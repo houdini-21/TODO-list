@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #f5f5f5;
 }
 
 * {
@@ -18,19 +19,20 @@ body {
 }
 
 .card {
-  width: 625px;
+  width: 900px;
   height: 640px;
   background: #fdfdfd;
   border-radius: 10px;
   filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.15));
 }
-/*.card {
+
+.card {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
-*/
+
 .card__date-searchbar-createitem-container,
 .card__date {
   display: flex;
@@ -43,6 +45,7 @@ body {
 .card__date-searchbar-createitem-container {
   justify-content: space-around;
   width: 95%;
+  margin: 15px;
 }
 
 .date__day {
@@ -83,13 +86,13 @@ body {
   border: 0px solid;
   height: 43px;
   overflow: hidden;
-  width: 320px;
+  width: 50%;
   border-radius: 10px;
   filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
 }
 input[type="text"].searchbar__input {
   height: 43px;
-  width: 315px;
+  width: 100%;
   padding: 10px;
   line-height: 30px;
   font-size: 16px;
@@ -129,4 +132,62 @@ input[type="text"].searchbar__input {
   background-size: 35px;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.card__todolist-table {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todolist-table {
+  border-collapse: separate;
+  width: 90%;
+  text-align: center;
+  border-spacing: 0px 3px;
+}
+
+table th:nth-child(1),
+table td:nth-child(1) {
+  border-radius: 5px 0px 0px 5px;
+}
+
+table th:nth-last-child(1),
+table td:nth-last-child(1) {
+  border-radius: 0px 5px 5px 0px;
+}
+
+td,
+th {
+  padding: 8px;
+}
+
+thead.todolist-table__tabletitle tr {
+  text-align: center;
+  background-color: #55c57a;
+  color: #fff;
+  height: 40px;
+}
+
+tbody.todolist-table__tableitem tr {
+  text-align: center;
+  background-color: #fff;
+  color: #252525;
+  height: 40px;
+
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+}
+
+.tableitem__options-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.option-icons__icon {
+  width: 22px;
+  height: 22px;
+  margin: 5px 7px;
 }
