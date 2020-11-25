@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 585px;
+  height: 600px;
+  background: #fdfdfd;
+  border-radius: 10px;
+  filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.15));
+}
