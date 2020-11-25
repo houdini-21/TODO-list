@@ -3,13 +3,13 @@
 //  -Each item must be emphasized by priority,
 //  -The list should allow filtering, search and sort items.
 // Have to:
-// -List items.
+// >-List items.
 // >-Add a new item.
 // >-New items have a “new” status.
 // -Reminder date can’t be less than the current date.
 // -Complete items have “complete” status.
 // >-Delete an Item
-// -Save items to localstorage.
+// >-Save items to localstorage.
 //
 // Bonus:
 // -Update an Item
@@ -26,7 +26,9 @@ const readDataLocalStorage = () => {
   return dataStorage;
 };
 
-const itemsList = readDataLocalStorage() || [];
+window.onload = () => {
+  const itemsList = readDataLocalStorage() || [];
+};
 
 const createItem = (name, priority, reminderDate, status) => {
   const itemScafold = {
