@@ -112,6 +112,7 @@ input[type="text"].searchbar__input {
 .searchbar__input:focus,
 .createitem__btn:focus,
 .inputbox__input-name:focus,
+.searchbar__btn:focus,
 .card__btncreate:focus,
 .inputbox__input-priority:focus,
 .inputbox__reminderdate:focus {
@@ -249,6 +250,18 @@ tbody.todolist-table__tableitem tr {
   cursor: pointer;
 }
 
+.Low {
+  color: #3FC380;
+}
+
+.Medium {
+    color: #F5AB35;
+}
+
+.High {
+    color: #EF4836;
+}
+
 .card__title {
   margin: 0px 0px 30px 0px;
   font-size: 30px;
@@ -301,7 +314,9 @@ tbody.todolist-table__tableitem tr {
   width: 45%;
 }
 
-.card__btncreate {
+.card__btncreate,
+.card__btnedititem {
+  display: block;
   border: none;
   background-color: #55c57a;
   color: #fff;

@@ -17,6 +17,19 @@
 // -Add “deferred” and “updated” status.
 // -Show notification when time is reached.
 
+const btnsearch = document.getElementById('btnsearch');
+const inputsearch = document.getElementById('inputsearch');
+const btncreateitem = document.getElementById('btncreateitem');
+
+const btnclosemodal = document.getElementById('btnclosemodal');
+const inputname = document.getElementById('inputname');
+const inputpriority = document.getElementById('inputpriority');
+const inputdate = document.getElementById('inputdate');
+const btncreate = document.getElementById('btncreate');
+const btnedititem = document.querySelector('.card__btnedititem');
+
+inputname.value = 'hi';
+
 const addZero = (i) => {
   if (i < 10) {
     i = `0${i}`;
@@ -50,7 +63,7 @@ const getdate = (option) => {
   }
 
   if (option === 'fulldate') {
-    let dd = datef.getDate() + 1;
+    let dd = datef.getDate();
     let mm = datef.getMonth() + 1;
     const yyyy = datef.getFullYear();
     dd = addZero(dd);
@@ -60,13 +73,9 @@ const getdate = (option) => {
   }
 };
 
-const showmodal = () => {
-  modaldiv.classList.remove('noshow');
-  clearField();
-};
-
 const closemodal = () => {
   modaldiv.classList.add('noshow');
+  clearField();
 };
 
 const saveDataLocalStorage = (data) => {
@@ -98,6 +107,93 @@ const deleteItem = (indexArray) => {
   saveDataLocalStorage(itemsList);
 };
 
+const editItem = (
+  editedName,
+  editedPriority,
+  editedReminderDate,
+  indexArray,
+) => {
+  const updateddates = {
+    name: editedName,
+    priority: editedPriority,
+    reminderDate: editedReminderDate,
+    status: 'Updated',
+  };
+  itemsList.splice(indexArray, 1, updateddates);
+  localStorage.removeItem('list');
+  saveDataLocalStorage(itemsList);
+};
+
+const clearField = () => {
+  inputname.value = '';
+  inputpriority.value = 0;
+  inputdate.value = '';
+};
+
+btnedititem.addEventListener('click', () => {
+  const indexArray = btnedititem.id;
+  editItem(inputname.value, inputpriority.value, inputdate.value, indexArray);
+  closemodal();
+});
+
+const showmodal = (type, indexArray) => {
+  modaldiv.classList.remove('noshow');
+
+  inputdate.min = getdate('fulldate');
+  inputdate.value = getdate('fulldate');
+  if (type === 'edit') {
+    btncreate.classList.add('noshow');
+    btnedititem.classList.remove('noshow');
+    inputname.value = itemsList[indexArray].name;
+    inputpriority.value = itemsList[indexArray].priority;
+    inputdate.value = itemsList[indexArray].reminderDate;
+    btnedititem.id = indexArray;
+  } else {
+    btncreate.classList.remove('noshow');
+    btnedititem.classList.add('noshow');
+    console.log('friend!');
+  }
+};
+
+const verifieditemstatus = (status) => {
+  if (status === 'Complete!') {
+    return './src/icons/complete.svg';
+  }
+  return './src/icons/circle.svg';
+};
+
+const renderTemplateItem = (data) => {
+  const templateitem = `
+              <tr class="itemchild">
+                <td>${data.name}</td>
+                <td class="${data.priority}">${data.priority}</td>
+                <td>${data.reminderDate}</td>
+                <td>${data.status}</td>
+                <td>
+                  <div class="tableitem__options-icons">
+                    <img
+                      class="option-icons__icon editicon"
+                      src="./src/icons/edit.svg"
+                      alt="edit"
+                    />
+                    <img
+                      class="option-icons__icon deleteicon"
+                      src="./src/icons/delete.svg"
+                      alt="delete"
+                    />
+                    <img
+                      class="option-icons__icon checkicon"
+                      src="${verifieditemstatus(data.status)}"
+                      alt="uncheck"
+                    />
+                  </div>
+                </td>
+              </tr>
+`;
+  const tablebody = document.getElementById('tablebody');
+  tablebody.insertAdjacentHTML('beforeend', templateitem);
+};
+
 const searchItem = (search) => {
   const searchresults = [];
   for (let i = 0; i < itemsList.length; i++) {
@@ -115,28 +211,14 @@ const searchItem = (search) => {
   }
 };
 
-const editItem = (
-  editedName,
-  editedPriority,
-  editedReminderDate,
-  indexArray,
-) => {
-  itemsList[indexArray].name = editedName;
-  itemsList[indexArray].priority = editedPriority;
-  itemsList[indexArray].reminderDate = editedReminderDate;
-  itemsList[indexArray].status = 'Edited';
-  localStorage.removeItem('list');
-  saveDataLocalStorage(itemsList);
-};
-
 const createiconbtnfunctionality = () => {
   const iconedit = document.querySelectorAll('.editicon');
   const icondelete = document.querySelectorAll('.deleteicon');
   const iconcheck = document.querySelectorAll('.checkicon');
 
-  iconedit.forEach((btn) => {
+  iconedit.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
-      // some action
+      showmodal('edit', indexArray);
     });
   });
 
@@ -147,51 +229,19 @@ const createiconbtnfunctionality = () => {
     });
   });
 
-  iconcheck.forEach((btn) => {
+  iconcheck.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
-      // some action
+      itemsList[indexArray].status = 'Complete!'; 
+      localStorage.removeItem('list');
+      saveDataLocalStorage(itemsList);
     });
   });
 };
-
-const renderTemplateItem = (data) => {
-  const templateitem = `
-              <tr class="itemchild">
-                <td>${data.name}</td>
-                <td>${data.priority}</td>
-                <td>${data.reminderDate}</td>
-                <td>${data.status}</td>
-                <td>
-                  <div class="tableitem__options-icons">
-                    <img
-                      class="option-icons__icon editicon"
-                      src="./src/icons/edit.svg"
-                      alt="edit"
-                    />
-                    <img
-                      class="option-icons__icon deleteicon"
-                      src="./src/icons/delete.svg"
-                      alt="delete"
-                    />
-                    <img
-                      class="option-icons__icon checkicon"
-                      src="./src/icons/circle.svg"
-                      alt="uncheck"
-                    />
-                  </div>
-                </td>
-              </tr>
-`;
-  const tablebody = document.getElementById('tablebody');
-  tablebody.insertAdjacentHTML('beforeend', templateitem);
-};
-
 const render = () => {
   clearChilds();
   itemsList.forEach((data) => {
     renderTemplateItem(data);
   });
-
   createiconbtnfunctionality();
 };
 
@@ -207,24 +257,9 @@ window.onload = () => {
   render();
 };
 
-const btnsearch = document.getElementById('btnsearch');
-const inputsearch = document.getElementById('inputsearch');
-const btncreateitem = document.getElementById('btncreateitem');
-
-const btnclosemodal = document.getElementById('btnclosemodal');
-const inputname = document.getElementById('inputname');
-const inputpriority = document.getElementById('inputpriority');
-const inputdate = document.getElementById('inputdate');
-const btncreate = document.getElementById('btncreate');
-
-const clearField = () => {
-  inputname.value = '';
-  inputpriority.value = 0;
-  inputdate.value = '';
-};
-
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
+    render();
     alert('Enter a search term!!!!');
   } else {
     searchItem(inputsearch.value);
