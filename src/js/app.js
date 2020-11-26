@@ -222,9 +222,13 @@ const createiconbtnfunctionality = () => {
     });
   });
 
-  iconcheck.forEach((btn) => {
+  iconcheck.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
-      // some action
+      if (iconcheck[indexArray].src.match('./src/icons/circle.svg')) {
+        iconcheck[indexArray].src = './src/icons/complete.svg';
+      } else {
+        iconcheck[indexArray].src = './src/icons/circle.svg';
+      }
     });
   });
 };
