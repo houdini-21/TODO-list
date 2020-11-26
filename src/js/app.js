@@ -17,8 +17,61 @@
 // -Add “deferred” and “updated” status.
 // -Show notification when time is reached.
 
+const addZero = (i) => {
+  if (i < 10) {
+    i = `0${i}`;
+  }
+  return i;
+};
+
+const modaldiv = document.getElementById('modalcreate');
+
+const clearChilds = () => {
+  const tablebody = document.getElementById('tablebody');
+  while (tablebody.firstChild) {
+    tablebody.removeChild(tablebody.firstChild);
+  }
+};
+
+const getdate = (option) => {
+  const datef = new Date();
+
+  if (option === 'day') {
+    return datef.getDate();
+  }
+
+  if (option === 'month') {
+    const namemonth = datef.toLocaleString('en', { month: 'long' });
+    return namemonth;
+  }
+
+  if (option === 'year') {
+    return datef.getFullYear();
+  }
+
+  if (option === 'fulldate') {
+    let dd = datef.getDate() + 1;
+    let mm = datef.getMonth() + 1;
+    const yyyy = datef.getFullYear();
+    dd = addZero(dd);
+    mm = addZero(mm);
+
+    return `${yyyy}-${mm}-${dd}`;
+  }
+};
+
+const showmodal = () => {
+  modaldiv.classList.remove('noshow');
+  clearField();
+};
+
+const closemodal = () => {
+  modaldiv.classList.add('noshow');
+};
+
 const saveDataLocalStorage = (data) => {
   localStorage.setItem('list', JSON.stringify(data));
+  render();
 };
 
 const readDataLocalStorage = () => {
@@ -26,23 +79,23 @@ const readDataLocalStorage = () => {
   return dataStorage;
 };
 
-window.onload = () => {
-  const itemsList = readDataLocalStorage() || [];
-};
+const itemsList = readDataLocalStorage() || [];
 
-const createItem = (name, priority, reminderDate, status) => {
+const createItem = (name, priority, reminderDate) => {
   const itemScafold = {
     name,
     priority,
     reminderDate,
-    status,
+    status: 'New',
   };
+
   itemsList.push(itemScafold);
   saveDataLocalStorage(itemsList);
 };
 
 const deleteItem = (indexArray) => {
   itemsList.splice(indexArray, 1);
+  saveDataLocalStorage(itemsList);
 };
 
 const searchItem = (search) => {
@@ -52,26 +105,149 @@ const searchItem = (search) => {
       searchresults.push(itemsList[i]);
     }
   }
-  return searchresults;
+  if (searchresults.length === 0) {
+    alert('We found nothing :(');
+  } else {
+    searchresults.forEach((data) => {
+      clearChilds();
+      renderTemplateItem(data);
+    });
+  }
 };
 
 const editItem = (
   editedName,
   editedPriority,
   editedReminderDate,
-  editedStatus,
   indexArray,
 ) => {
   itemsList[indexArray].name = editedName;
   itemsList[indexArray].priority = editedPriority;
   itemsList[indexArray].reminderDate = editedReminderDate;
-  itemsList[indexArray].status = editedStatus;
+  itemsList[indexArray].status = 'Edited';
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
 };
 
-// const itemnew = createItem('dance', 'high', '12-11-29', 'new');
-// const itemnew2 = createItem('learn', 'medium', '12-11-21', 'new');
-// const edititem = editItem('dance', 'low', '21-11-30', 'new', 0);
-// const search = searchItem('dance');
-// console.log(search);
+const createiconbtnfunctionality = () => {
+  const iconedit = document.querySelectorAll('.editicon');
+  const icondelete = document.querySelectorAll('.deleteicon');
+  const iconcheck = document.querySelectorAll('.checkicon');
+
+  iconedit.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // some action
+    });
+  });
+
+  icondelete.forEach((btn, indexArray) => {
+    btn.addEventListener('click', () => {
+      console.log('eliminando');
+      deleteItem(indexArray);
+    });
+  });
+
+  iconcheck.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // some action
+    });
+  });
+};
+
+const renderTemplateItem = (data) => {
+  const templateitem = `
+              <tr class="itemchild">
+                <td>${data.name}</td>
+                <td>${data.priority}</td>
+                <td>${data.reminderDate}</td>
+                <td>${data.status}</td>
+                <td>
+                  <div class="tableitem__options-icons">
+                    <img
+                      class="option-icons__icon editicon"
+                      src="./src/icons/edit.svg"
+                      alt="edit"
+                    />
+                    <img
+                      class="option-icons__icon deleteicon"
+                      src="./src/icons/delete.svg"
+                      alt="delete"
+                    />
+                    <img
+                      class="option-icons__icon checkicon"
+                      src="./src/icons/circle.svg"
+                      alt="uncheck"
+                    />
+                  </div>
+                </td>
+              </tr>
+`;
+  const tablebody = document.getElementById('tablebody');
+  tablebody.insertAdjacentHTML('beforeend', templateitem);
+};
+
+const render = () => {
+  clearChilds();
+  itemsList.forEach((data) => {
+    renderTemplateItem(data);
+  });
+
+  createiconbtnfunctionality();
+};
+
+const datenumber = document.getElementById('datenumber');
+const datemonth = document.getElementById('datemonth');
+const dateyear = document.getElementById('dateyear');
+
+window.onload = () => {
+  datenumber.innerText = getdate('day');
+  datemonth.innerText = getdate('month');
+  dateyear.innerText = getdate('year');
+
+  render();
+};
+
+const btnsearch = document.getElementById('btnsearch');
+const inputsearch = document.getElementById('inputsearch');
+const btncreateitem = document.getElementById('btncreateitem');
+
+const btnclosemodal = document.getElementById('btnclosemodal');
+const inputname = document.getElementById('inputname');
+const inputpriority = document.getElementById('inputpriority');
+const inputdate = document.getElementById('inputdate');
+const btncreate = document.getElementById('btncreate');
+
+const clearField = () => {
+  inputname.value = '';
+  inputpriority.value = 0;
+  inputdate.value = '';
+};
+
+btnsearch.addEventListener('click', () => {
+  if (inputsearch.value === '') {
+    alert('Enter a search term!!!!');
+  } else {
+    searchItem(inputsearch.value);
+  }
+});
+
+btncreateitem.addEventListener('click', () => {
+  showmodal();
+});
+
+btnclosemodal.addEventListener('click', () => {
+  closemodal();
+});
+
+btncreate.addEventListener('click', () => {
+  if (
+    inputname.value === ''
+    || inputpriority.value === ''
+    || inputdate.value === ''
+  ) {
+    alert('ningun campo puede quedar vacio');
+  } else {
+    createItem(inputname.value, inputpriority.value, inputdate.value);
+    closemodal();
+  }
+});
