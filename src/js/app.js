@@ -117,7 +117,7 @@ const editItem = (
     name: editedName,
     priority: editedPriority,
     reminderDate: editedReminderDate,
-    status: 'Edited',
+    status: 'Updated',
   };
   itemsList.splice(indexArray, 1, updateddates);
   localStorage.removeItem('list');
@@ -155,11 +155,18 @@ const showmodal = (type, indexArray) => {
   }
 };
 
+const verifieditemstatus = (status) => {
+  if (status === 'Complete!') {
+    return './src/icons/complete.svg';
+  }
+  return './src/icons/circle.svg';
+};
+
 const renderTemplateItem = (data) => {
   const templateitem = `
               <tr class="itemchild">
                 <td>${data.name}</td>
-                <td>${data.priority}</td>
+                <td class="${data.priority}">${data.priority}</td>
                 <td>${data.reminderDate}</td>
                 <td>${data.status}</td>
                 <td>
@@ -176,7 +183,7 @@ const renderTemplateItem = (data) => {
                     />
                     <img
                       class="option-icons__icon checkicon"
-                      src="./src/icons/circle.svg"
+                      src="${verifieditemstatus(data.status)}"
                       alt="uncheck"
                     />
                   </div>
@@ -224,11 +231,9 @@ const createiconbtnfunctionality = () => {
 
   iconcheck.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
-      if (iconcheck[indexArray].src.match('./src/icons/circle.svg')) {
-        iconcheck[indexArray].src = './src/icons/complete.svg';
-      } else {
-        iconcheck[indexArray].src = './src/icons/circle.svg';
-      }
+      itemsList[indexArray].status = 'Complete!'; 
+      localStorage.removeItem('list');
+      saveDataLocalStorage(itemsList);
     });
   });
 };

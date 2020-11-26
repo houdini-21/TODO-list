@@ -112,6 +112,7 @@ input[type="text"].searchbar__input {
 .searchbar__input:focus,
 .createitem__btn:focus,
 .inputbox__input-name:focus,
+.searchbar__btn:focus,
 .card__btncreate:focus,
 .inputbox__input-priority:focus,
 .inputbox__reminderdate:focus {
@@ -247,6 +248,18 @@ tbody.todolist-table__tableitem tr {
   width: 40px;
   height: 40px;
   cursor: pointer;
+}
+
+.Low {
+  color: #3FC380;
+}
+
+.Medium {
+    color: #F5AB35;
+}
+
+.High {
+    color: #EF4836;
 }
 
 .card__title {
