@@ -26,6 +26,13 @@ const addZero = (i) => {
 
 const modaldiv = document.getElementById('modalcreate');
 
+const clearChilds = () => {
+  const tablebody = document.getElementById('tablebody');
+  while (tablebody.firstChild) {
+    tablebody.removeChild(tablebody.firstChild);
+  }
+};
+
 const getdate = (option) => {
   const datef = new Date();
 
@@ -63,6 +70,7 @@ const closemodal = () => {
 
 const saveDataLocalStorage = (data) => {
   localStorage.setItem('list', JSON.stringify(data));
+  render();
 };
 
 const readDataLocalStorage = () => {
@@ -86,6 +94,7 @@ const createItem = (name, priority, reminderDate) => {
 
 const deleteItem = (indexArray) => {
   itemsList.splice(indexArray, 1);
+  saveDataLocalStorage(itemsList);
 };
 
 const searchItem = (search) => {
@@ -106,20 +115,45 @@ const editItem = (
   editedName,
   editedPriority,
   editedReminderDate,
-  editedStatus,
   indexArray,
 ) => {
   itemsList[indexArray].name = editedName;
   itemsList[indexArray].priority = editedPriority;
   itemsList[indexArray].reminderDate = editedReminderDate;
-  itemsList[indexArray].status = editedStatus;
+  itemsList[indexArray].status = 'Edited';
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
 };
 
+const createiconbtnfunctionality = () => {
+  const iconedit = document.querySelectorAll('.editicon');
+  const icondelete = document.querySelectorAll('.deleteicon');
+  const iconcheck = document.querySelectorAll('.checkicon');
+
+  console.log(iconcheck);
+  iconedit.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // some action
+    });
+  });
+
+  icondelete.forEach((btn, indexArray) => {
+    btn.addEventListener('click', () => {
+      console.log('eliminando');
+      deleteItem(indexArray);
+    });
+  });
+
+  iconcheck.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // some action
+    });
+  });
+};
+
 const renderTemplateItem = (data) => {
   const templateitem = `
-              <tr>
+              <tr class="itemchild">
                 <td>${data.name}</td>
                 <td>${data.priority}</td>
                 <td>${data.reminderDate}</td>
@@ -127,17 +161,17 @@ const renderTemplateItem = (data) => {
                 <td>
                   <div class="tableitem__options-icons">
                     <img
-                      class="option-icons__icon"
+                      class="option-icons__icon editicon"
                       src="./src/icons/edit.svg"
                       alt="edit"
                     />
                     <img
-                      class="option-icons__icon"
+                      class="option-icons__icon deleteicon"
                       src="./src/icons/delete.svg"
                       alt="delete"
                     />
                     <img
-                      class="option-icons__icon"
+                      class="option-icons__icon checkicon"
                       src="./src/icons/circle.svg"
                       alt="uncheck"
                     />
@@ -146,7 +180,16 @@ const renderTemplateItem = (data) => {
               </tr>
 `;
   const tablebody = document.getElementById('tablebody');
-  tablebody.insertAdjacentHTML('afterbegin', templateitem);
+  tablebody.insertAdjacentHTML('beforeend', templateitem);
+};
+
+const render = () => {
+  clearChilds();
+  itemsList.forEach((data) => {
+    renderTemplateItem(data);
+  });
+
+  createiconbtnfunctionality();
 };
 
 const datenumber = document.getElementById('datenumber');
@@ -158,9 +201,7 @@ window.onload = () => {
   datemonth.innerText = getdate('month');
   dateyear.innerText = getdate('year');
 
-  itemsList.forEach((data) => {
-    renderTemplateItem(data);
-  });
+  render();
 };
 
 const btnsearch = document.getElementById('btnsearch');
