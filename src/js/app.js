@@ -17,6 +17,16 @@
 // -Add “deferred” and “updated” status.
 // -Show notification when time is reached.
 
+const btnsearch = document.getElementById('btnsearch');
+const inputsearch = document.getElementById('inputsearch');
+const btncreateitem = document.getElementById('btncreateitem');
+
+const btnclosemodal = document.getElementById('btnclosemodal');
+const inputname = document.getElementById('inputname');
+const inputpriority = document.getElementById('inputpriority');
+const inputdate = document.getElementById('inputdate');
+const btncreate = document.getElementById('btncreate');
+
 const addZero = (i) => {
   if (i < 10) {
     i = `0${i}`;
@@ -60,6 +70,12 @@ const getdate = (option) => {
   }
 };
 
+const clearField = () => {
+  inputname.value = '';
+  inputpriority.value = 0;
+  inputdate.value = '';
+};
+
 const showmodal = () => {
   modaldiv.classList.remove('noshow');
   clearField();
@@ -98,23 +114,6 @@ const deleteItem = (indexArray) => {
   saveDataLocalStorage(itemsList);
 };
 
-const searchItem = (search) => {
-  const searchresults = [];
-  for (let i = 0; i < itemsList.length; i++) {
-    if (itemsList[i].name === search) {
-      searchresults.push(itemsList[i]);
-    }
-  }
-  if (searchresults.length === 0) {
-    alert('We found nothing :(');
-  } else {
-    searchresults.forEach((data) => {
-      clearChilds();
-      renderTemplateItem(data);
-    });
-  }
-};
-
 const editItem = (
   editedName,
   editedPriority,
@@ -127,31 +126,6 @@ const editItem = (
   itemsList[indexArray].status = 'Edited';
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
-};
-
-const createiconbtnfunctionality = () => {
-  const iconedit = document.querySelectorAll('.editicon');
-  const icondelete = document.querySelectorAll('.deleteicon');
-  const iconcheck = document.querySelectorAll('.checkicon');
-
-  iconedit.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      // some action
-    });
-  });
-
-  icondelete.forEach((btn, indexArray) => {
-    btn.addEventListener('click', () => {
-      console.log('eliminando');
-      deleteItem(indexArray);
-    });
-  });
-
-  iconcheck.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      // some action
-    });
-  });
 };
 
 const renderTemplateItem = (data) => {
@@ -186,6 +160,47 @@ const renderTemplateItem = (data) => {
   tablebody.insertAdjacentHTML('beforeend', templateitem);
 };
 
+const searchItem = (search) => {
+  const searchresults = [];
+  for (let i = 0; i < itemsList.length; i++) {
+    if (itemsList[i].name === search) {
+      searchresults.push(itemsList[i]);
+    }
+  }
+  if (searchresults.length === 0) {
+    alert('We found nothing :(');
+  } else {
+    searchresults.forEach((data) => {
+      clearChilds();
+      renderTemplateItem(data);
+    });
+  }
+};
+
+const createiconbtnfunctionality = () => {
+  const iconedit = document.querySelectorAll('.editicon');
+  const icondelete = document.querySelectorAll('.deleteicon');
+  const iconcheck = document.querySelectorAll('.checkicon');
+
+  iconedit.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // some action
+    });
+  });
+
+  icondelete.forEach((btn, indexArray) => {
+    btn.addEventListener('click', () => {
+      console.log('eliminando');
+      deleteItem(indexArray);
+    });
+  });
+
+  iconcheck.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // some action
+    });
+  });
+};
 const render = () => {
   clearChilds();
   itemsList.forEach((data) => {
@@ -207,21 +222,6 @@ window.onload = () => {
   render();
 };
 
-const btnsearch = document.getElementById('btnsearch');
-const inputsearch = document.getElementById('inputsearch');
-const btncreateitem = document.getElementById('btncreateitem');
-
-const btnclosemodal = document.getElementById('btnclosemodal');
-const inputname = document.getElementById('inputname');
-const inputpriority = document.getElementById('inputpriority');
-const inputdate = document.getElementById('inputdate');
-const btncreate = document.getElementById('btncreate');
-
-const clearField = () => {
-  inputname.value = '';
-  inputpriority.value = 0;
-  inputdate.value = '';
-};
 
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
