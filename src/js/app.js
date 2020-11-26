@@ -62,6 +62,7 @@ const getdate = (option) => {
 
 const showmodal = () => {
   modaldiv.classList.remove('noshow');
+  clearField();
 };
 
 const closemodal = () => {
@@ -133,7 +134,6 @@ const createiconbtnfunctionality = () => {
   const icondelete = document.querySelectorAll('.deleteicon');
   const iconcheck = document.querySelectorAll('.checkicon');
 
-  console.log(iconcheck);
   iconedit.forEach((btn) => {
     btn.addEventListener('click', () => {
       // some action
@@ -216,6 +216,12 @@ const inputname = document.getElementById('inputname');
 const inputpriority = document.getElementById('inputpriority');
 const inputdate = document.getElementById('inputdate');
 const btncreate = document.getElementById('btncreate');
+
+const clearField = () => {
+  inputname.value = '';
+  inputpriority.value = 0;
+  inputdate.value = '';
+};
 
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
