@@ -11,6 +11,10 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.noshow {
+  display: none !important;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -274,9 +278,23 @@ tbody.todolist-table__tableitem tr {
   margin: 10px 5px;
 }
 
+.inputbox__input-priority {
+  cursor: pointer;
+  outline: 0;
+  border: 2px solid #55c57a;
+  height: 45px;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0px 10px;
+  color: #252525;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .inputbox__input-priority,
 .inputbox__reminderdate {
-  width: 43%;
+  width: 45%;
 }
 
 .card__btncreate {

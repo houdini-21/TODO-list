@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="./src/css/style.css" />
   </head>
   <body>
-    <div class="modal">
+      <div class="modal noshow" id="modalcreate">
       <div class="modal__card">
         <h3 class="card__title">
           Add New Item
         </h3>
-        <div class="card__close-box">
+        <div class="card__close-box" id="btnclosemodal">
           <img
             class="close-box__btnclose"
             src="./src/icons/close.svg"
@@ -19,11 +19,25 @@
           />
         </div>
         <div class="card__input-box">
-          <input class="inputbox__input-name" type="text" />
-          <input class="inputbox__input-priority" type="text" />
-          <input class="inputbox__reminderdate" type="text" />
+          <input
+            class="inputbox__input-name"
+            type="text"
+            id="inputname"
+            placeholder="Name Item"
+          />
+          <select
+            class="inputbox__input-priority"
+            type="text"
+            id="inputpriority"
+          >
+            <option value="0">Select Priority</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+          <input class="inputbox__reminderdate" type="text" id="inputdate" />
         </div>
-        <button class="card__btncreate">
+        <button class="card__btncreate" id="btncreate">
           Create Item
         </button>
       </div>
@@ -47,10 +61,15 @@
             </div>
           </div>
           <div class="card__searchbar">
-            <input type="text" class="searchbar__input" />
-            <button class="searchbar__btn"></button>
+            <input
+              type="text"
+              class="searchbar__input"
+              placeholder="Search....."
+              id="inputsearch"
+            />
+            <button class="searchbar__btn" id="btnsearch"></button>
           </div>
-          <div class="card__createitem">
+          <div class="card__createitem" id="btncreateitem">
             <button class="createitem__btn"></button>
           </div>
         </div>
@@ -81,12 +100,12 @@
                     <img
                       class="option-icons__icon"
                       src="./src/icons/delete.svg"
-                      alt="edit"
+                      alt="delete"
                     />
                     <img
                       class="option-icons__icon"
                       src="./src/icons/circle.svg"
-                      alt="edit"
+                      alt="uncheck"
                     />
                   </div>
                 </td>

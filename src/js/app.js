@@ -17,6 +17,16 @@
 // -Add “deferred” and “updated” status.
 // -Show notification when time is reached.
 
+const modaldiv = document.getElementById('modalcreate');
+
+const showmodal = () => {
+  modaldiv.classList.remove('noshow');
+};
+
+const closemodal = () => {
+  modaldiv.classList.add('noshow');
+};
+
 const saveDataLocalStorage = (data) => {
   localStorage.setItem('list', JSON.stringify(data));
 };
@@ -26,9 +36,7 @@ const readDataLocalStorage = () => {
   return dataStorage;
 };
 
-window.onload = () => {
-  const itemsList = readDataLocalStorage() || [];
-};
+const itemsList = readDataLocalStorage() || [];
 
 const createItem = (name, priority, reminderDate, status) => {
   const itemScafold = {
@@ -52,7 +60,11 @@ const searchItem = (search) => {
       searchresults.push(itemsList[i]);
     }
   }
-  return searchresults;
+  if (searchresults.length === 0) {
+    alert('We found nothing');
+  } else {
+    return searchresults;
+  }
 };
 
 const editItem = (
@@ -70,8 +82,43 @@ const editItem = (
   saveDataLocalStorage(itemsList);
 };
 
-// const itemnew = createItem('dance', 'high', '12-11-29', 'new');
-// const itemnew2 = createItem('learn', 'medium', '12-11-21', 'new');
-// const edititem = editItem('dance', 'low', '21-11-30', 'new', 0);
-// const search = searchItem('dance');
-// console.log(search);
+
+
+const btnsearch = document.getElementById('btnsearch');
+const inputsearch = document.getElementById('inputsearch');
+const btncreateitem = document.getElementById('btncreateitem');
+
+const btnclosemodal = document.getElementById('btnclosemodal');
+const inputname = document.getElementById('inputname');
+const inputpriority = document.getElementById('inputpriority');
+const inputdate = document.getElementById('inputdate');
+const btncreate = document.getElementById('btncreate');
+
+btnsearch.addEventListener('click', () => {
+  if (inputsearch.value === '') {
+    alert('Enter a search term');
+  } else {
+    searchItem(inputsearch.value);
+  }
+});
+
+btncreateitem.addEventListener('click', () => {
+  showmodal();
+});
+
+btnclosemodal.addEventListener('click', () => {
+  closemodal();
+});
+
+btncreate.addEventListener('click', () => {
+  if (
+    inputname.value === ''
+    || inputpriority.value === ''
+    || inputdate.value === ''
+  ) {
+    alert('ningun campo puede quedar vacio');
+  } else {
+    createItem(inputname.value, inputpriority.value, inputdate.value);
+    closemodal();
+  }
+});
