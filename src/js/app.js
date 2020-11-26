@@ -63,7 +63,7 @@ const getdate = (option) => {
   }
 
   if (option === 'fulldate') {
-    let dd = datef.getDate() + 1;
+    let dd = datef.getDate();
     let mm = datef.getMonth() + 1;
     const yyyy = datef.getFullYear();
     dd = addZero(dd);
@@ -133,13 +133,20 @@ const clearField = () => {
 btnedititem.addEventListener('click', () => {
   const indexArray = btnedititem.id;
   editItem(inputname.value, inputpriority.value, inputdate.value, indexArray);
+  closemodal();
 });
 
 const showmodal = (type, indexArray) => {
   modaldiv.classList.remove('noshow');
+
+  inputdate.min = getdate('fulldate');
+  inputdate.value = getdate('fulldate');
   if (type === 'edit') {
     btncreate.classList.add('noshow');
     btnedititem.classList.remove('noshow');
+    inputname.value = itemsList[indexArray].name;
+    inputpriority.value = itemsList[indexArray].priority;
+    inputdate.value = itemsList[indexArray].reminderDate;
     btnedititem.id = indexArray;
   } else {
     btncreate.classList.remove('noshow');
@@ -226,7 +233,6 @@ const render = () => {
   itemsList.forEach((data) => {
     renderTemplateItem(data);
   });
-
   createiconbtnfunctionality();
 };
 
@@ -244,6 +250,7 @@ window.onload = () => {
 
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
+    render();
     alert('Enter a search term!!!!');
   } else {
     searchItem(inputsearch.value);
