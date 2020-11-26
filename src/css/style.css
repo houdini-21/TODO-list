@@ -90,6 +90,7 @@ body {
   border-radius: 10px;
   filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
 }
+
 input[type="text"].searchbar__input {
   height: 43px;
   width: 100%;
@@ -101,7 +102,11 @@ input[type="text"].searchbar__input {
 }
 
 .searchbar__input:focus,
-.createitem__btn:focus {
+.createitem__btn:focus,
+.inputbox__input-name:focus,
+.card__btncreate:focus,
+.inputbox__input-priority:focus,
+.inputbox__reminderdate:focus {
   outline: none;
 }
 
@@ -119,6 +124,8 @@ input[type="text"].searchbar__input {
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 0px 10px 10px 0px;
+
+  cursor: pointer;
 }
 
 .createitem__btn {
@@ -132,6 +139,7 @@ input[type="text"].searchbar__input {
   background-size: 35px;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .card__todolist-table {
@@ -190,4 +198,96 @@ tbody.todolist-table__tableitem tr {
   width: 22px;
   height: 22px;
   margin: 5px 7px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__card {
+  background-color: #fdfdfd;
+  padding: 15px;
+  width: 600px;
+  height: 320px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card__close-box {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+}
+
+.close-box__btnclose {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.card__title {
+  margin: 0px 0px 30px 0px;
+  font-size: 30px;
+  color: #252525;
+  font-weight: 400;
+}
+
+.card__input-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 75%;
+}
+
+.inputbox__input-name,
+.inputbox__input-priority,
+.inputbox__reminderdate {
+  filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
+  height: 25px;
+  width: 100%;
+  padding: 10px;
+  line-height: 30px;
+  font-size: 16px;
+  color: #252525;
+  background-color: #fff;
+  /* padding: 0; */
+  border: none;
+  border-radius: 10px;
+  margin: 10px 5px;
+}
+
+.inputbox__input-priority,
+.inputbox__reminderdate {
+  width: 43%;
+}
+
+.card__btncreate {
+  border: none;
+  background-color: #55c57a;
+  color: #fff;
+  font-size: 16.5px;
+  font-weight: 700;
+  width: 75%;
+  height: 45px;
+  margin: 20px 0px;
+  border-radius: 10px;
+  cursor: pointer;
 }
