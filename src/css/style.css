@@ -75,6 +75,10 @@ body {
   margin-left: 5px;
 }
 
+.month__month-name {
+  text-transform: capitalize;
+}
+
 .month__month-name,
 .year__year-number {
   font-size: 16px;
@@ -157,7 +161,7 @@ input[type="text"].searchbar__input {
   border-collapse: separate;
   width: 90%;
   text-align: center;
-  border-spacing: 0px 3px;
+  border-spacing: 0px 4px;
 }
 
 table th:nth-child(1),

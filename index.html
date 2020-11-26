@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./src/css/style.css" />
   </head>
   <body>
-      <div class="modal noshow" id="modalcreate">
+    <div class="modal noshow" id="modalcreate">
       <div class="modal__card">
         <h3 class="card__title">
           Add New Item
@@ -47,16 +47,14 @@
         <div class="card__date-searchbar-createitem-container">
           <div class="card__date">
             <div class="date__day">
-              <span class="day__day-number">
-                26
-              </span>
+              <span class="day__day-number" id="datenumber"></span>
             </div>
             <div class="date__month-year-container">
               <div class="date__month">
-                <span class="month__month-name">October</span>
+                <span class="month__month-name" id="datemonth"></span>
               </div>
               <div class="date__year">
-                <span class="year__year-number">2020</span>
+                <span class="year__year-number" id="dateyear"></span>
               </div>
             </div>
           </div>
@@ -84,32 +82,7 @@
                 <th>Options</th>
               </tr>
             </thead>
-            <tbody class="todolist-table__tableitem">
-              <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-                <td>Germany</td>
-                <td>
-                  <div class="tableitem__options-icons">
-                    <img
-                      class="option-icons__icon"
-                      src="./src/icons/edit.svg"
-                      alt="edit"
-                    />
-                    <img
-                      class="option-icons__icon"
-                      src="./src/icons/delete.svg"
-                      alt="delete"
-                    />
-                    <img
-                      class="option-icons__icon"
-                      src="./src/icons/circle.svg"
-                      alt="uncheck"
-                    />
-                  </div>
-                </td>
-              </tr>
+            <tbody class="todolist-table__tableitem" id="tablebody">
             </tbody>
           </table>
         </div>
