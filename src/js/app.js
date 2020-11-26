@@ -105,9 +105,12 @@ const searchItem = (search) => {
     }
   }
   if (searchresults.length === 0) {
-    alert('We found nothing');
+    alert('We found nothing :(');
   } else {
-    return searchresults;
+    searchresults.forEach((data) => {
+      clearChilds();
+      renderTemplateItem(data);
+    });
   }
 };
 
@@ -216,7 +219,7 @@ const btncreate = document.getElementById('btncreate');
 
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
-    alert('Enter a search term');
+    alert('Enter a search term!!!!');
   } else {
     searchItem(inputsearch.value);
   }
