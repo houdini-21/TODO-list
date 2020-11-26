@@ -301,7 +301,9 @@ tbody.todolist-table__tableitem tr {
   width: 45%;
 }
 
-.card__btncreate {
+.card__btncreate,
+.card__btnedititem {
+  display: block;
   border: none;
   background-color: #55c57a;
   color: #fff;

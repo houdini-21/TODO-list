@@ -26,6 +26,9 @@ const inputname = document.getElementById('inputname');
 const inputpriority = document.getElementById('inputpriority');
 const inputdate = document.getElementById('inputdate');
 const btncreate = document.getElementById('btncreate');
+const btnedititem = document.querySelector('.card__btnedititem');
+
+inputname.value = 'hi';
 
 const addZero = (i) => {
   if (i < 10) {
@@ -70,19 +73,9 @@ const getdate = (option) => {
   }
 };
 
-const clearField = () => {
-  inputname.value = '';
-  inputpriority.value = 0;
-  inputdate.value = '';
-};
-
-const showmodal = () => {
-  modaldiv.classList.remove('noshow');
-  clearField();
-};
-
 const closemodal = () => {
   modaldiv.classList.add('noshow');
+  clearField();
 };
 
 const saveDataLocalStorage = (data) => {
@@ -120,12 +113,39 @@ const editItem = (
   editedReminderDate,
   indexArray,
 ) => {
-  itemsList[indexArray].name = editedName;
-  itemsList[indexArray].priority = editedPriority;
-  itemsList[indexArray].reminderDate = editedReminderDate;
-  itemsList[indexArray].status = 'Edited';
+  const updateddates = {
+    name: editedName,
+    priority: editedPriority,
+    reminderDate: editedReminderDate,
+    status: 'Edited',
+  };
+  itemsList.splice(indexArray, 1, updateddates);
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
+};
+
+const clearField = () => {
+  inputname.value = '';
+  inputpriority.value = 0;
+  inputdate.value = '';
+};
+
+btnedititem.addEventListener('click', () => {
+  const indexArray = btnedititem.id;
+  editItem(inputname.value, inputpriority.value, inputdate.value, indexArray);
+});
+
+const showmodal = (type, indexArray) => {
+  modaldiv.classList.remove('noshow');
+  if (type === 'edit') {
+    btncreate.classList.add('noshow');
+    btnedititem.classList.remove('noshow');
+    btnedititem.id = indexArray;
+  } else {
+    btncreate.classList.remove('noshow');
+    btnedititem.classList.add('noshow');
+    console.log('friend!');
+  }
 };
 
 const renderTemplateItem = (data) => {
@@ -182,9 +202,9 @@ const createiconbtnfunctionality = () => {
   const icondelete = document.querySelectorAll('.deleteicon');
   const iconcheck = document.querySelectorAll('.checkicon');
 
-  iconedit.forEach((btn) => {
+  iconedit.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
-      // some action
+      showmodal('edit', indexArray);
     });
   });
 
@@ -221,7 +241,6 @@ window.onload = () => {
 
   render();
 };
-
 
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
