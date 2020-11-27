@@ -9,5 +9,6 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
+    'import/no-cycle': [2, { maxDepth: 1 }],
   },
 };
