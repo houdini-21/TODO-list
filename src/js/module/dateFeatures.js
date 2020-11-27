@@ -7,25 +7,25 @@ const addZero = (i) => {
 };
 
 const getdate = (option) => {
-  const datef = new Date();
+  const finalDate = new Date();
 
   if (option === 'day') {
-    return datef.getDate();
+    return finalDate.getDate();
   }
 
   if (option === 'month') {
-    const namemonth = datef.toLocaleString('en', { month: 'long' });
+    const namemonth = finalDate.toLocaleString('en', { month: 'long' });
     return namemonth;
   }
 
   if (option === 'year') {
-    return datef.getFullYear();
+    return finalDate.getFullYear();
   }
 
   if (option === 'fulldate') {
-    let dd = datef.getDate();
-    let mm = datef.getMonth() + 1;
-    const yyyy = datef.getFullYear();
+    let dd = finalDate.getDate();
+    let mm = finalDate.getMonth() + 1;
+    const yyyy = finalDate.getFullYear();
     dd = addZero(dd);
     mm = addZero(mm);
 

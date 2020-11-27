@@ -1,6 +1,5 @@
 import { clearField } from './clearfunctionality.js';
 import getdate from './dateFeatures.js';
-import { itemsList } from './localstoragefeatures.js';
 
 const modaldiv = document.getElementById('modalcreate');
 const inputname = document.getElementById('inputname');
@@ -14,7 +13,7 @@ const closemodal = () => {
   clearField();
 };
 
-const showmodal = (type, indexArray) => {
+const showmodal = (type, indexArray, itemsList) => {
   modaldiv.classList.remove('noshow');
   inputdate.min = getdate('fulldate');
   inputdate.value = getdate('fulldate');

@@ -1,6 +1,13 @@
-import { saveDataLocalStorage, itemsList } from './localstoragefeatures.js';
+import { saveDataLocalStorage } from './localstoragefeatures.js';
 import { clearChilds } from './clearfunctionality.js';
 import { renderItemsFromSearch } from './rendertemplate.js';
+import { showmodal } from './modalfeatures.js'
+
+const itemsList = JSON.parse(localStorage.getItem('list')) || [];
+
+const showModalEditItem = (indexArray) => {
+  showmodal('edit', indexArray, itemsList);
+};
 
 const createItem = (name, priority, reminderDate) => {
   const itemScafold = {
@@ -71,5 +78,10 @@ const searchItem = (search, filterselected) => {
 };
 
 export {
-  searchItem, deleteItem, editItem, createItem, checkItem,
+  searchItem,
+  deleteItem,
+  editItem,
+  createItem,
+  checkItem,
+  showModalEditItem,
 };
