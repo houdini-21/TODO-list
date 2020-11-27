@@ -1,8 +1,8 @@
 import { clearChilds } from './clearfunctionality.js';
-import renderTemplateItem from './rendertemplate.js';
+import { renderTemplateItem } from './rendertemplate.js';
 import { showmodal } from './modalfeatures.js';
-import { deleteItem } from './featuresSeachDeleteEditCreate.js';
-import { itemsList, saveDataLocalStorage } from './localstoragefeatures.js';
+import { deleteItem, checkItem } from './featuresSeachDeleteEditCreate.js';
+import { itemsList } from './localstoragefeatures.js';
 
 const createiconbtnfunctionality = () => {
   const iconedit = document.querySelectorAll('.editicon');
@@ -23,9 +23,7 @@ const createiconbtnfunctionality = () => {
 
   iconcheck.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
-      itemsList[indexArray].status = 'Complete!';
-      localStorage.removeItem('list');
-      saveDataLocalStorage(itemsList);
+      checkItem(indexArray);
     });
   });
 };

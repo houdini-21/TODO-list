@@ -37,4 +37,14 @@ const renderTemplateItem = (data) => {
   tablebody.insertAdjacentHTML('beforeend', templateitem);
 };
 
-export default renderTemplateItem;
+const renderItemsFromSearch = (searchresults) => {
+  if (searchresults.length === 0) {
+    alert('We found nothing :(');
+  } else {
+    searchresults.forEach((data) => {
+      renderTemplateItem(data);
+    });
+  }
+};
+
+export { renderTemplateItem, renderItemsFromSearch };

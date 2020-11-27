@@ -119,6 +119,32 @@ input[type="text"].searchbar__input {
   outline: none;
 }
 
+.searchbar__select {
+  position: absolute;
+  right: 40px;
+  top: 0;
+  margin: 0;
+}
+
+.searchbar__select {
+  cursor: pointer;
+  outline: 0;
+  border-left: 2px solid #7ed56f;
+  border-top: 2px solid #7ed56f;
+  border-bottom: 2px solid #7ed56f;
+  border-right: 0px;
+  height: 43px;
+  width: 100px;
+  font-size: 15px;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0px 10px;
+  color: #252525;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .searchbar__btn {
   position: absolute;
   height: 43px;
@@ -251,15 +277,15 @@ tbody.todolist-table__tableitem tr {
 }
 
 .Low {
-  color: #3FC380;
+  color: #3fc380;
 }
 
 .Medium {
-    color: #F5AB35;
+  color: #f5ab35;
 }
 
 .High {
-    color: #EF4836;
+  color: #ef4836;
 }
 
 .card__title {

@@ -1,6 +1,6 @@
 import { clearField } from './clearfunctionality.js';
+import getdate from './dateFeatures.js';
 import { itemsList } from './localstoragefeatures.js';
-import getdate from './dateFeatures.js'
 
 const modaldiv = document.getElementById('modalcreate');
 const inputname = document.getElementById('inputname');

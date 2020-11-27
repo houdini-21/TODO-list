@@ -9,7 +9,7 @@
     <div class="modal noshow" id="modalcreate">
       <div class="modal__card">
         <h3 class="card__title">
-        Info Item
+          Info Item
         </h3>
         <div class="card__close-box" id="btnclosemodal">
           <img
@@ -46,6 +46,7 @@
         </button>
       </div>
     </div>
+
     <div class="container">
       <div class="card">
         <div class="card__date-searchbar-createitem-container">
@@ -69,6 +70,13 @@
               placeholder="Search....."
               id="inputsearch"
             />
+            <select class="searchbar__select" id="filter">
+              <option value="0" disabled selected>Filter By:</option>
+              <option value="name">Name</option>
+              <option value="priority">Priority</option>
+              <option value="date">Date</option>
+              <option value="status">Status</option>
+            </select>
             <button class="searchbar__btn" id="btnsearch"></button>
           </div>
           <div class="card__createitem" id="btncreateitem">
@@ -86,8 +94,7 @@
                 <th>Options</th>
               </tr>
             </thead>
-            <tbody class="todolist-table__tableitem" id="tablebody">
-            </tbody>
+            <tbody class="todolist-table__tableitem" id="tablebody"></tbody>
           </table>
         </div>
       </div>

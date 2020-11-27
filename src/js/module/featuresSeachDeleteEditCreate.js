@@ -1,6 +1,6 @@
 import { saveDataLocalStorage, itemsList } from './localstoragefeatures.js';
 import { clearChilds } from './clearfunctionality.js';
-import renderTemplateItem from './rendertemplate.js';
+import { renderItemsFromSearch } from './rendertemplate.js';
 
 const createItem = (name, priority, reminderDate) => {
   const itemScafold = {
@@ -11,6 +11,12 @@ const createItem = (name, priority, reminderDate) => {
   };
 
   itemsList.push(itemScafold);
+  saveDataLocalStorage(itemsList);
+};
+
+const checkItem = (indexArray) => {
+  itemsList[indexArray].status = 'Complete!';
+  localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
 };
 
@@ -38,34 +44,32 @@ const editItem = (
 };
 
 const searchItem = (search, filterselected) => {
+  clearChilds();
   let searchresults;
   switch (filterselected) {
     case 'name':
       searchresults = itemsList.filter((item) => item.name === search);
+      renderItemsFromSearch(searchresults);
       break;
     case 'priority':
       searchresults = itemsList.filter((item) => item.priority === search);
+      renderItemsFromSearch(searchresults);
       break;
     case 'date':
       searchresults = itemsList.filter((item) => item.date > search);
+      renderItemsFromSearch(searchresults);
       break;
     case 'status':
       searchresults = itemsList.filter((item) => item.status === search);
+      renderItemsFromSearch(searchresults);
       break;
     default:
+      searchresults = itemsList.filter((item) => item.name === search);
+      renderItemsFromSearch(searchresults);
       break;
-  }
-
-  if (searchresults.length === 0) {
-    alert('We found nothing :(');
-  } else {
-    searchresults.forEach((data) => {
-      clearChilds();
-      renderTemplateItem(data);
-    });
   }
 };
 
 export {
-  searchItem, deleteItem, editItem, createItem,
+  searchItem, deleteItem, editItem, createItem, checkItem,
 };

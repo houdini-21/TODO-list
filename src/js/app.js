@@ -16,13 +16,14 @@ const inputpriority = document.getElementById('inputpriority');
 const inputdate = document.getElementById('inputdate');
 const btncreate = document.getElementById('btncreate');
 const btnedititem = document.querySelector('.card__btnedititem');
+const filterselect = document.getElementById('filter')
 
 btnsearch.addEventListener('click', () => {
   if (inputsearch.value === '') {
     render();
     alert('Enter a search term!!!!');
   } else {
-    searchItem(inputsearch.value, 'priority');
+    searchItem(inputsearch.value, filterselect.value);
   }
 });
 
