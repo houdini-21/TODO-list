@@ -6,7 +6,7 @@ const addZero = (i) => {
   return number;
 };
 
-const getdate = (option) => {
+const getDate = (option) => {
   const finalDate = new Date();
 
   if (option === 'day') {
@@ -14,8 +14,8 @@ const getdate = (option) => {
   }
 
   if (option === 'month') {
-    const namemonth = finalDate.toLocaleString('en', { month: 'long' });
-    return namemonth;
+    const nameMonth = finalDate.toLocaleString('en', { month: 'long' });
+    return nameMonth;
   }
 
   if (option === 'year') {
@@ -34,4 +34,4 @@ const getdate = (option) => {
   return false;
 };
 
-export default getdate;
+export default getDate;

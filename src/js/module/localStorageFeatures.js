@@ -1,4 +1,4 @@
-import render from './renderfunctionality.js';
+import render from './renderFunctionality.js';
 
 const saveDataLocalStorage = (data) => {
   localStorage.setItem('list', JSON.stringify(data));

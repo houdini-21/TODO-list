@@ -4,28 +4,28 @@ import {
   showModalEditItem,
 } from './featuresSeachDeleteEditCreate.js';
 
-const createiconbtnfunctionality = () => {
-  const iconedit = document.querySelectorAll('.editicon');
-  const icondelete = document.querySelectorAll('.deleteicon');
-  const iconcheck = document.querySelectorAll('.checkicon');
+const createIconBtnFunctionality = () => {
+  const iconEdit = document.querySelectorAll('.editicon');
+  const iconDelete = document.querySelectorAll('.deleteicon');
+  const iconCheck = document.querySelectorAll('.checkicon');
 
-  iconedit.forEach((btn, indexArray) => {
+  iconEdit.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
       showModalEditItem(indexArray);
     });
   });
 
-  icondelete.forEach((btn, indexArray) => {
+  iconDelete.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
       deleteItem(indexArray);
     });
   });
 
-  iconcheck.forEach((btn, indexArray) => {
+  iconCheck.forEach((btn, indexArray) => {
     btn.addEventListener('click', () => {
       checkItem(indexArray);
     });
   });
 };
 
-export default createiconbtnfunctionality;
+export default createIconBtnFunctionality;

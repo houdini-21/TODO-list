@@ -1,4 +1,4 @@
-const verifieditemstatus = (status) => {
+const verifiedItemStatus = (status) => {
   if (status === 'Complete!') {
     return './src/icons/complete.svg';
   }
@@ -6,7 +6,7 @@ const verifieditemstatus = (status) => {
 };
 
 const renderTemplateItem = (data) => {
-  const templateitem = `
+  const templateItem = `
               <tr class="itemchild">
                 <td>${data.name}</td>
                 <td class="${data.priority}">${data.priority}</td>
@@ -26,22 +26,22 @@ const renderTemplateItem = (data) => {
                     />
                     <img
                       class="option-icons__icon checkicon"
-                      src="${verifieditemstatus(data.status)}"
+                      src="${verifiedItemStatus(data.status)}"
                       alt="uncheck"
                     />
                   </div>
                 </td>
               </tr>
 `;
-  const tablebody = document.getElementById('tablebody');
-  tablebody.insertAdjacentHTML('beforeend', templateitem);
+  const tableBody = document.getElementById('tablebody');
+  tableBody.insertAdjacentHTML('beforeend', templateItem);
 };
 
-const renderItemsFromSearch = (searchresults) => {
-  if (searchresults.length === 0) {
+const renderItemsFromSearch = (searchResults) => {
+  if (searchResults.length === 0) {
     alert('We found nothing :(');
   } else {
-    searchresults.forEach((data) => {
+    searchResults.forEach((data) => {
       renderTemplateItem(data);
     });
   }

@@ -1,67 +1,67 @@
-import render from './module/renderfunctionality.js';
-import getdate from './module/dateFeatures.js';
+import render from './module/renderFunctionality.js';
+import getDate from './module/dateFeatures.js';
 import {
   searchItem,
   createItem,
   editItem,
 } from './module/featuresSeachDeleteEditCreate.js';
-import { closemodal, showmodal } from './module/modalfeatures.js';
+import { closeModal, showModal } from './module/modalFeatures.js';
 
-const btnsearch = document.getElementById('btnsearch');
-const inputsearch = document.getElementById('inputsearch');
-const btncreateitem = document.getElementById('btncreateitem');
-const btnclosemodal = document.getElementById('btnclosemodal');
-const inputname = document.getElementById('inputname');
-const inputpriority = document.getElementById('inputpriority');
-const inputdate = document.getElementById('inputdate');
-const btncreate = document.getElementById('btncreate');
-const btnedititem = document.querySelector('.card__btnedititem');
-const filterselect = document.getElementById('filter')
+const btnSearch = document.getElementById('btnsearch');
+const inputSearch = document.getElementById('inputsearch');
+const btnCreateItem = document.getElementById('btncreateitem');
+const btnCloseModal = document.getElementById('btnclosemodal');
+const inputName = document.getElementById('inputname');
+const inputPriority = document.getElementById('inputpriority');
+const inputDate = document.getElementById('inputdate');
+const btnCreate = document.getElementById('btncreate');
+const btnEditItem = document.querySelector('.card__btnedititem');
+const filterSelect = document.getElementById('filter')
 
-btnsearch.addEventListener('click', () => {
-  if (inputsearch.value === '') {
+btnSearch.addEventListener('click', () => {
+  if (inputSearch.value === '') {
     render();
     alert('Enter a search term!!!!');
   } else {
-    searchItem(inputsearch.value, filterselect.value);
+    searchItem(inputSearch.value, filterSelect.value);
   }
 });
 
-btncreateitem.addEventListener('click', () => {
-  inputdate.min = getdate('fulldate');
-  inputdate.value = getdate('fulldate');
-  showmodal();
+btnCreateItem.addEventListener('click', () => {
+  inputDate.min = getDate('fulldate');
+  inputDate.value = getDate('fulldate');
+  showModal();
 });
 
-btnclosemodal.addEventListener('click', () => {
-  closemodal();
+btnCloseModal.addEventListener('click', () => {
+  closeModal();
 });
 
-btncreate.addEventListener('click', () => {
+btnCreate.addEventListener('click', () => {
   if (
-    inputname.value === ''
-    || inputpriority.value === '0'
-    || inputdate.value === ''
+    inputName.value === ''
+    || inputPriority.value === '0'
+    || inputDate.value === ''
   ) {
     alert('ningun campo puede quedar vacio');
   } else {
-    createItem(inputname.value, inputpriority.value, inputdate.value);
-    closemodal();
+    createItem(inputName.value, inputPriority.value, inputDate.value);
+    closeModal();
   }
 });
 
-btnedititem.addEventListener('click', () => {
-  const indexArray = btnedititem.id;
-  editItem(inputname.value, inputpriority.value, inputdate.value, indexArray);
-  closemodal();
+btnEditItem.addEventListener('click', () => {
+  const indexArray = btnEditItem.id;
+  editItem(inputName.value, inputPriority.value, inputDate.value, indexArray);
+  closeModal();
 });
 
 window.onload = () => {
-  const datenumber = document.getElementById('datenumber');
-  const datemonth = document.getElementById('datemonth');
-  const dateyear = document.getElementById('dateyear');
-  datenumber.innerText = getdate('day');
-  datemonth.innerText = getdate('month');
-  dateyear.innerText = getdate('year');
+  const dateNumber = document.getElementById('datenumber');
+  const dateMonth = document.getElementById('datemonth');
+  const dateYear = document.getElementById('dateyear');
+  dateNumber.innerText = getDate('day');
+  dateMonth.innerText = getDate('month');
+  dateYear.innerText = getDate('year');
   render();
 };

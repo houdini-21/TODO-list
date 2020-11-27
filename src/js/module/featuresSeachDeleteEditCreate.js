@@ -1,12 +1,12 @@
-import { saveDataLocalStorage } from './localstoragefeatures.js';
-import { clearChilds } from './clearfunctionality.js';
-import { renderItemsFromSearch } from './rendertemplate.js';
-import { showmodal } from './modalfeatures.js'
+import { saveDataLocalStorage } from './localStorageFeatures.js';
+import { clearChilds } from './clearFunctionality.js';
+import { renderItemsFromSearch } from './renderTemplate.js';
+import { showModal } from './modalFeatures.js'
 
 const itemsList = JSON.parse(localStorage.getItem('list')) || [];
 
 const showModalEditItem = (indexArray) => {
-  showmodal('edit', indexArray, itemsList);
+  showModal('edit', indexArray, itemsList);
 };
 
 const createItem = (name, priority, reminderDate) => {
@@ -22,7 +22,7 @@ const createItem = (name, priority, reminderDate) => {
 };
 
 const checkItem = (indexArray) => {
-  itemsList[indexArray].status = 'Complete!';
+  itemsList[indexArray].status = 'Complete';
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
 };
@@ -38,41 +38,41 @@ const editItem = (
   editedReminderDate,
   indexArray,
 ) => {
-  const updateddates = {
+  const updatedDates = {
     name: editedName,
     priority: editedPriority,
     reminderDate: editedReminderDate,
     status: 'Updated',
   };
 
-  itemsList.splice(indexArray, 1, updateddates);
+  itemsList.splice(indexArray, 1, updatedDates);
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
 };
 
-const searchItem = (search, filterselected) => {
+const searchItem = (search, filterSelected) => {
   clearChilds();
-  let searchresults;
-  switch (filterselected) {
+  let searchResults;
+  switch (filterSelected) {
     case 'name':
-      searchresults = itemsList.filter((item) => item.name === search);
-      renderItemsFromSearch(searchresults);
+      searchResults = itemsList.filter((item) => item.name === search);
+      renderItemsFromSearch(searchResults);
       break;
     case 'priority':
-      searchresults = itemsList.filter((item) => item.priority === search);
-      renderItemsFromSearch(searchresults);
+      searchResults = itemsList.filter((item) => item.priority === search);
+      renderItemsFromSearch(searchResults);
       break;
     case 'date':
-      searchresults = itemsList.filter((item) => item.reminderDate >= search);
-      renderItemsFromSearch(searchresults);
+      searchResults = itemsList.filter((item) => item.reminderDate >= search);
+      renderItemsFromSearch(searchResults);
       break;
     case 'status':
-      searchresults = itemsList.filter((item) => item.status === search);
-      renderItemsFromSearch(searchresults);
+      searchResults = itemsList.filter((item) => item.status === search);
+      renderItemsFromSearch(searchResults);
       break;
     default:
-      searchresults = itemsList.filter((item) => item.name === search);
-      renderItemsFromSearch(searchresults);
+      searchResults = itemsList.filter((item) => item.name === search);
+      renderItemsFromSearch(searchResults);
       break;
   }
 };
