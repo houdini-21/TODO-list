@@ -56,7 +56,7 @@ const searchItem = (search, filterselected) => {
       renderItemsFromSearch(searchresults);
       break;
     case 'date':
-      searchresults = itemsList.filter((item) => item.date > search);
+      searchresults = itemsList.filter((item) => item.reminderDate >= search);
       renderItemsFromSearch(searchresults);
       break;
     case 'status':

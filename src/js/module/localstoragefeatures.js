@@ -10,6 +10,6 @@ const readDataLocalStorage = () => {
   return dataStorage;
 };
 
-const itemsList = readDataLocalStorage() || [];
+const itemsList = JSON.parse(localStorage.getItem('list')) || [];
 
 export { saveDataLocalStorage, readDataLocalStorage, itemsList };
