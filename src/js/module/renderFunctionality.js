@@ -37,7 +37,7 @@ const validateItemComplete = () => {
   });
   setTimeout(() => {
     validateItemComplete();
-  }, 5000);
+  }, 6000);
 };
 
 export default render;
