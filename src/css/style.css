@@ -306,10 +306,11 @@ tbody.todolist-table__tableitem tr {
 
 .inputbox__input-name,
 .inputbox__input-priority,
+.inputbox__remindertime,
 .inputbox__reminderdate {
   filter: drop-shadow(0px 16px 40px rgba(112, 144, 176, 0.2));
   height: 25px;
-  width: 100%;
+  width: 43%;
   padding: 10px;
   line-height: 30px;
   font-size: 16px;
@@ -326,6 +327,7 @@ tbody.todolist-table__tableitem tr {
   outline: 0;
   border: 2px solid #55c57a;
   height: 45px;
+  width: 48%;
   border-radius: 5px;
   background: #fff;
   padding: 0px 10px;
@@ -333,11 +335,6 @@ tbody.todolist-table__tableitem tr {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-}
-
-.inputbox__input-priority,
-.inputbox__reminderdate {
-  width: 45%;
 }
 
 .card__btncreate,

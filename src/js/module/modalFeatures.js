@@ -5,6 +5,7 @@ const modalDiv = document.getElementById('modalcreate');
 const inputName = document.getElementById('inputname');
 const inputPriority = document.getElementById('inputpriority');
 const inputDate = document.getElementById('inputdate');
+const inputTime = document.getElementById('inputtime');
 const btnCreate = document.getElementById('btncreate');
 const btnEditItem = document.querySelector('.card__btnedititem');
 
@@ -22,6 +23,7 @@ const showModal = (type, indexArray, itemsList) => {
     btnEditItem.classList.remove('noshow');
     inputName.value = itemsList[indexArray].name;
     inputPriority.value = itemsList[indexArray].priority;
+    inputTime.value = itemsList[indexArray].reminderTime;
     inputDate.value = itemsList[indexArray].reminderDate;
     btnEditItem.id = indexArray;
   } else {

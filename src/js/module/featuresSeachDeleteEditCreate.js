@@ -1,7 +1,7 @@
 import { saveDataLocalStorage } from './localStorageFeatures.js';
 import { clearChilds } from './clearFunctionality.js';
 import { renderItemsFromSearch } from './renderTemplate.js';
-import { showModal } from './modalFeatures.js'
+import { showModal } from './modalFeatures.js';
 
 const itemsList = JSON.parse(localStorage.getItem('list')) || [];
 
@@ -9,11 +9,12 @@ const showModalEditItem = (indexArray) => {
   showModal('edit', indexArray, itemsList);
 };
 
-const createItem = (name, priority, reminderDate) => {
+const createItem = (name, priority, reminderDate, reminderTime) => {
   const itemScafold = {
     name,
     priority,
     reminderDate,
+    reminderTime,
     status: 'New',
   };
 
@@ -36,16 +37,18 @@ const editItem = (
   editedName,
   editedPriority,
   editedReminderDate,
+  editedReminderTime,
   indexArray,
 ) => {
-  const updatedDates = {
+  const updatedData = {
     name: editedName,
     priority: editedPriority,
     reminderDate: editedReminderDate,
+    reminderTime: editedReminderTime,
     status: 'Updated',
   };
 
-  itemsList.splice(indexArray, 1, updatedDates);
+  itemsList.splice(indexArray, 1, updatedData);
   localStorage.removeItem('list');
   saveDataLocalStorage(itemsList);
 };

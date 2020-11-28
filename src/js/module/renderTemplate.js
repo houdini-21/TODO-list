@@ -1,5 +1,5 @@
 const verifiedItemStatus = (status) => {
-  if (status === 'Complete!') {
+  if (status === 'Complete') {
     return './src/icons/complete.svg';
   }
   return './src/icons/circle.svg';
@@ -11,6 +11,7 @@ const renderTemplateItem = (data) => {
                 <td>${data.name}</td>
                 <td class="${data.priority}">${data.priority}</td>
                 <td>${data.reminderDate}</td>
+                <td>${data.reminderTime}</td>
                 <td>${data.status}</td>
                 <td>
                   <div class="tableitem__options-icons">

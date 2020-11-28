@@ -13,6 +13,14 @@ const getDate = (option) => {
     return finalDate.getDate();
   }
 
+  if (option === 'time') {
+    let hours = finalDate.getHours();
+    let minutes = finalDate.getMinutes();
+    hours = addZero(hours);
+    minutes = addZero(minutes);
+    return `${hours}:${minutes}`;
+  }
+
   if (option === 'month') {
     const nameMonth = finalDate.toLocaleString('en', { month: 'long' });
     return nameMonth;
